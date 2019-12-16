@@ -1,5 +1,4 @@
 @import url('https://fonts.googleapis.com/css?family=Montserrat|Raleway');
-
 body {
   font: 1rem 'Montserrat', sans-serif;
   margin-top: 50px;
@@ -15,7 +14,7 @@ a:hover {
 
 .jumbotron {
   margin-top: -1em;
-  background: url('/images/bg.jpg') no-repeat left center;
+  //background: url('/images/bg.jpg') no-repeat left center;
   min-height: 20em;
   color: #fff;
   text-shadow: 2px 2px 10px rgba(0, 0, 0, 0.3);

@@ -1,0 +1,8 @@
+extends ../layout
+
+block content
+  .container
+    h1.main-title 새로운 여행상품 등록하기
+    form(action="/item", method="POST")
+      include _form
+      button.btn.btn-outline-primary(type="submit") Post Your Tour Item

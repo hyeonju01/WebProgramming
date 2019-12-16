@@ -1,0 +1,28 @@
+extends ../layout
+
+include ../includes/_paginate
+
+block content
+  .container
+    form.form-inline.search-input-group(action='/item', method='GET')
+      i.fa.fa-search
+      input.form-control.mr-sm-2(type='text', name='term', placeholder='Search', aria-label='Search', value=term)
+
+    h1.main-title 
+      | TOUR ITEM
+      if item.total > 0
+        .small Total #{item.total} ITEM(s)
+
+    if item.total <= 0 
+      .alert.alert-info No items available yet
+    else
+      .item
+        each item in item.docs
+          .item
+            a.title(href=`/item/${item.id}`)= item.title
+            include _item
+
+      +paginate(item, '/item', query)
+
+    hr
+    a.btn.btn-primary(href='/item/new') Add New Item

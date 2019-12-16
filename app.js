@@ -30,10 +30,12 @@ app.locals.querystring = require('querystring');
 
 // MongoDB Connect
 mongoose.Promise = global.Promise; // ES6 Native Promise를 mongoose에서 사용한다.
-mongoose.connect('mongodb+srv://admin:admin@cluster0-sa8xv.mongodb.net/test?retryWrites=true&w=majority', {
+mongoose.connect('mongodb+srv://user:user@cluster0-sa8xv.mongodb.net/test?retryWrites=true&w=majority', {
   useMongoClient: true
 });
 mongoose.connection.on('error', console.error);
+
+
 
 //Favicon
 app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));

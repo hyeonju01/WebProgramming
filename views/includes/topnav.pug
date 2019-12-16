@@ -1,7 +1,7 @@
 .header.clearfix
   nav.navbar.navbar-expand-md.navbar-dark.bg-dark.fixed-top
     .container
-      a.navbar-brand(href="/") VOYAGER
+      a.navbar-brand(href="/") VOYAGER🚀
       button.navbar-toggler(type="button", data-toggle="collapse", data-target="#navbarsExampleDefault", aria-controls="navbarsExampleDefault", aria-expanded="false", aria-label="Toggle navigation")
         span.navbar-toggler-icon
 
@@ -9,14 +9,14 @@
         ul.navbar-nav.ml-auto
           li.nav-item
             a.nav-link(href="/item") 여행 상품
-          li.nav-item
-            a.nav-link(href="/users") 상품 등록 페이지
           if (!currentUser) 
             li.nav-item
               a.nav-link(href='/signin') 로그인
             li.nav-item
               a.nav-link(href='/users/new') 회원가입
           else
+            li.nav-item
+              a.nav-link(href="/item/new") 상품 등록 페이지
             li.nav-item
               a.nav-link(href=`/users/${currentUser._id}`) My Profile
             li.nav-item

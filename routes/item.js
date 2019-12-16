@@ -1,5 +1,5 @@
 const express = require('express');
-const Item = require('../models/item');
+const item = require('../models/item');
 const catchErrors = require('../lib/async-error');
 
 const router = express.Router();
@@ -26,12 +26,12 @@ router.get('/', catchErrors(async (req, res, next) => {
       {content: {'$regex': term, '$options': 'i'}}
     ]};
   }
-  const questions = await Question.paginate(query, {
+  const item = await item.paginate(query, {
     sort: {createdAt: -1}, 
     populate: 'author', 
     page: page, limit: limit
   });
-  res.render('item/index', {questions: questions, query: req.query});
+  res.render('item/index', {item: item, query: req.query});
 }));
 
 router.get('/new', needAuth, (req, res, next) => {
@@ -39,12 +39,12 @@ router.get('/new', needAuth, (req, res, next) => {
 });
 
 router.get('/:id/edit', needAuth, catchErrors(async (req, res, next) => {
-  const question = await Question.findById(req.params.id);
-  res.render('questions/edit', {question: question});
+  const question = await item.findById(req.params.id);
+  res.render('item/edit', {item: item});
 }));
 
 router.get('/:id', catchErrors(async (req, res, next) => {
-  const question = await Question.findById(req.params.id).populate('author');
+  const question = await item.findById(req.params.id).populate('author');
   const answers = await Answer.find({question: question.id}).populate('author');
   question.numReads++;    // TODO: 동일한 사람이 본 경우에 Read가 증가하지 않도록???
   await question.save();
@@ -83,7 +83,7 @@ router.post('/', needAuth, catchErrors(async (req, res, next) => {
   });
   await question.save();
   req.flash('success', 'Successfully posted');
-  res.redirect('/items');
+  res.redirect('/item');
 }));
 
 router.post('/:id/answers', needAuth, catchErrors(async (req, res, next) => {
